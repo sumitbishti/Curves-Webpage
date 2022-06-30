@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/kute.js@2.1.2/dist/kute.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-size: 20px;
+      font-family: "Amatic SC", sans-serif;
+      color: white;
+      background-color: #070438;
+      overflow-x: hidden;
+    }
+
+    section {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 400px;
+      padding: 100px 20vw;
+    }
+
+    .navy {
+      background-color: #070438;
+    }
+
+    .red {
+      background-color: #f31313;
+    }
+
+    .orange {
+      background-color: #ff6933;
+      background-image: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .pink {
+      background-color: #ff2ab1;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10vw), 0 100%);
+      z-index: 1;
+      margin-bottom: -10vw;
+    }
+
+    .pink-blob1 {
+      background-color: #FF0066;
+    }
+
+    .green {
+      background-color: #16f956;
+      /* margin-bottom: -200px; */
+    }
+
+    .blue {
+      background-color: #2f11db;
+    }
+
+    .blue-black {
+      background-color: #001220;
+    }
+
+    .yellow {
+      background-color: #d8de23;
+    }
+
+    .violet {
+      background-color: #61092e;
+    }
+
+    .curve {
+      position: absolute;
+      height: 225px;
+      width: 100%;
+      bottom: 0;
+    }
+
+    .curve::before {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: #070438;
+      border-radius: 100% 50%;
+      width: 62%;
+      height: 100%;
+      z-index: 1;
+      transform: translate(-10%, 25%);
+    }
+
+    .curve::after {
+      content: "";
+      display: block;
+      position: absolute;
+      background-color: #f31313;
+      border-radius: 100% 70%;
+      width: 60%;
+      height: 100%;
+      transform: translate(72%, 67%);
+    }
+
+    .arrow {
+      position: absolute;
+      background-color: #1652f9;
+      bottom: 0;
+    }
+
+    .arrow::before,
+    .arrow::after {
+      content: "";
+      position: absolute;
+      background-color: #f31313;
+      z-index: 1;
+      width: 150px;
+      height: 100px;
+      top: -75px;
+    }
+
+    .arrow::before {
+      right: 50%;
+      transform: skew(0, 25deg);
+    }
+
+    .arrow::after {
+      left: 50%;
+      transform: skew(0, -25deg);
+    }
+
+    .red-image {
+      max-width: 100%;
+      height: 250px;
+      clip-path: polygon(30px 40px, 100% 0, 85% 80%, 0 100%);
+    }
+
+    .yellow::after {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background-color: #61092e;
+      content: "";
+      bottom: -100px;
+      border-top-left-radius: 50% 70%;
+      border-top-right-radius: 50% 70%;
+    }
+
+    .green-land {
+      position: absolute;
+      bottom: 4.5vw;
+      left: -11px;
+      width: 105%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(174.2deg);
+    }
+
+    .green-land svg {
+      position: relative;
+      display: block;
+      width: calc(134% + 1.3px);
+      height: 10vw;
+    }
+
+    .green-land .shape-fill {
+      fill: #16f956;
+    }
+
+    .wave {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .wave svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 150px;
+    }
+
+    .wave .shape-fill {
+      fill: #16f956;
+    }
+
+    .spacer {
+      aspect-ratio: 900/360;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .water-tides {
+      background-image: url('./water-tides.svg');
+      margin-top: -20%;
+      margin-bottom: -4%;
+    }
+
+    .water-tides-lower {
+      background-image: url('./w4.svg');
+      margin-top: -2%;
+      margin-bottom: -5%;
+    }
+
+    .blob1 {
+      background-image: url('./w5.svg');
+      margin-top: -5%;
+      margin-bottom: -22%;
+    }
+
+    .blob2 {
+      background-image: url('./w6.svg');
+      margin-top: -20%;
+    }
+
+    .wave-yellow {
+      background-image: url('./w8.svg');
+      margin-bottom: -35%;
+    }
+
+    .flip {
+      transform: rotate(180deg);
+    }
+
+    .blob-content {
+      z-index: 1;
+    }
+
+    .blob-content h1 {
+      text-align: center;
+    }
+
+    .blob-motion {
+      position: absolute;
+      /* transform: translateY(-100%); */
+    }
+  </style>
+</head>
+
+<body>
+  <section class="navy">
+    <h1>Hello World!</h1>
+    <h1>I'm Sumit Bisht</h1>
+    <div class="curve"></div>
+  </section>
+  <section class="red">
+    <h1>Hello World!</h1>
+    <p>
+      Cumque unde repellendus pariatur et saepe excepturi optio possimus fuga
+      nisi fugit quaerat, corporis distinctio magni quia mollitia sint
+      molestias corrupti doloribus cupiditate vitae dicta quasi laudantium.
+      Porro, reprehenderit iure?
+    </p>
+    <div class="arrow"></div>
+    <img class="red-image"
+      src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" />
+  </section>
+  <section class="orange">
+    <h1>Hello World!</h1>
+    <p>
+      Aliquam accusantium inventore dicta saepe pariatur. Assumenda, obcaecati
+      tempora exercitationem minima at modi similique non sint dignissimos
+      libero impedit ut? Reprehenderit suscipit explicabo, qui cupiditate
+      excepturi alias provident aspernatur dignissimos.
+    </p>
+  </section>
+  <section class="pink">
+    <h1>Hello World!</h1>
+    <p>
+      Sit non consequatur velit cum, quidem voluptatibus sed porro modi
+      dolores fuga ut adipisci magnam ipsa enim iste dolorem perspiciatis
+      nulla et reiciendis dicta? Perferendis tempore laboriosam ipsum sint
+      delectus.
+    </p>
+    <div class="green-land">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path
+          d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+          opacity=".25" class="shape-fill"></path>
+        <path
+          d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+          opacity=".5" class="shape-fill"></path>
+        <path
+          d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+          class="shape-fill"></path>
+      </svg>
+    </div>
+  </section>
+  <section class="green">
+    <h1>Hello World!</h1>
+    <p>
+      Odio nobis officiis laboriosam? Possimus, consequuntur. Amet temporibus
+      est atque cum delectus eos debitis incidunt adipisci nostrum quae
+      possimus tempore voluptatibus esse aperiam facere sint officia, deleniti
+      natus ratione ab.
+    </p>
+  </section>
+
+  <div class="water-tides spacer"></div>
+
+  <section class="blue">
+    <div class="blob-content">
+      <h1>Hello World!</h1>
+      <p>
+        Ipsa, dolores aspernatur earum eum ipsam, adipisci libero recusandae
+        placeat quibusdam repudiandae incidunt eius, sed ullam dignissimos vitae
+        culpa nemo dolor accusantium cum doloremque ex accusamus rerum vero
+        similique. Vel.
+      </p>
+    </div>
+    <!-- <div class="wave">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            class="shape-fill"
+          ></path>
+        </svg>
+    </div> -->
+
+    <svg class="blob-motion" id="visual" viewBox="0 0 960 300" width="960" height="300"
+      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+      <g transform="translate(463.4620855285606 133.55770320459754)">
+        <path id="blob-3"
+          d="M77.9 -71.7C102.1 -53.7 123.5 -26.9 126.4 2.8C129.2 32.5 113.4 65.1 89.2 90.1C65.1 115.1 32.5 132.5 5.1 127.5C-22.4 122.4 -44.8 94.8 -63.1 69.8C-81.5 44.8 -95.7 22.4 -93.4 2.4C-91 -17.7 -72 -35.4 -53.7 -53.4C-35.4 -71.4 -17.7 -89.7 4.6 -94.3C26.9 -98.9 53.7 -89.7 77.9 -71.7"
+          fill="#002251"></path>
+      </g>
+      <g transform="translate(485.43968273038877 165.50842825283542)" style="visibility: hidden">
+        <path id="blob-4"
+          d="M48.2 -60.4C61 -35.4 69 -17.7 77.4 8.4C85.7 34.4 94.5 68.8 81.7 82C68.8 95.2 34.4 87.1 2.8 84.3C-28.8 81.4 -57.5 83.8 -75.7 70.7C-93.8 57.5 -101.4 28.8 -98.4 3.1C-95.3 -22.6 -81.6 -45.3 -63.4 -70.3C-45.3 -95.3 -22.6 -122.6 -2.5 -120.2C17.7 -117.7 35.4 -85.4 48.2 -60.4"
+          fill="#002251"></path>
+      </g>
+    </svg>
+
+    <script>
+      const tween2 = KUTE.fromTo(
+        '#blob-3',
+        { path: "#blob-3" },
+        { path: "#blob-4" },
+        { repeat: 999, duration: 3000, yoyo: true }
+      )
+      tween2.start()
+    </script>
+  </section>
+
+  <div class="water-tides-lower spacer"></div>
+
+  <section class="blue-black">
+    <h1>Hello World!</h1>
+    <p>
+      Laborum quisquam, consequuntur modi iure repellat incidunt harum saepe
+      sit mollitia quae tempora fugit aut corrupti? Delectus earum rerum sequi
+      eligendi corporis nisi unde blanditiis adipisci. Eligendi veritatis
+      animi aut?
+    </p>
+  </section>
+
+  <div class="blob1 spacer flip"></div>
+  <section class="pink-blob1">
+    <div class="blob-content">
+      <h1>Hello World!</h1>
+      <p>
+        Laborum quisquam, consequuntur modi iure repellat incidunt harum saepe
+        sit mollitia quae tempora fugit aut corrupti? Delectus earum rerum sequi
+        eligendi corporis nisi unde blanditiis adipisci. Eligendi veritatis
+        animi aut?
+      </p>
+    </div>
+
+    <svg class="blob-motion" id="visual" viewBox="0 0 960 300" width="960" height="300"
+      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+      <g transform="translate(476.7714987239971 165.93063022102297)">
+        <path id="blob-1"
+          d="M72.2 -73.4C90.2 -54.2 99.1 -27.1 94.4 -4.7C89.7 17.7 71.4 35.4 53.4 48.4C35.4 61.4 17.7 69.7 -4.7 74.4C-27.1 79.1 -54.2 80.2 -66.7 67.2C-79.2 54.2 -77.1 27.1 -81.2 -4.1C-85.4 -35.4 -95.7 -70.7 -83.2 -89.9C-70.7 -109 -35.4 -112 -4.1 -107.9C27.1 -103.8 54.2 -92.5 72.2 -73.4"
+          fill="#BB004B"></path>
+      </g>
+      <g transform="translate(464.4718332116289 174.49460773061423)" style="visibility: hidden">
+        <path id="blob-2"
+          d="M80.4 -81.1C104.8 -56.1 125.4 -28 120.2 -5.2C115 17.7 84 35.4 59.7 48C35.4 60.7 17.7 68.3 -6.1 74.5C-29.9 80.6 -59.9 85.2 -74.7 72.5C-89.5 59.9 -89.3 29.9 -89.7 -0.5C-90.2 -30.9 -91.4 -61.8 -76.6 -86.8C-61.8 -111.8 -30.9 -130.9 -1.4 -129.5C28 -128 56.1 -106.1 80.4 -81.1"
+          fill="#BB004B"></path>
+      </g>
+    </svg>
+
+    <script>
+      const tween = KUTE.fromTo(
+        '#blob-1',
+        { path: '#blob-1' },
+        { path: '#blob-2' },
+        { repeat: 999, duration: 3000, yoyo: true }
+      )
+      tween.start()
+    </script>
+
+  </section>
+  <div class="blob2 spacer"></div>
+
+  <div class="wave-yellow spacer"></div>
+  <section class="yellow">
+    <h1>Hello World!</h1>
+    <p>
+      Laborum quisquam, consequuntur modi iure repellat incidunt harum saepe
+      sit mollitia quae tempora fugit aut corrupti? Delectus earum rerum sequi
+      eligendi corporis nisi unde blanditiis adipisci. Eligendi veritatis
+      animi aut?
+    </p>
+  </section>
+  <section class="violet">
+    <h1>Hello World!</h1>
+    <p>
+      Aspernatur dicta voluptatibus corporis in nostrum aliquam libero quod
+      sapiente rerum? Quis vero voluptas reprehenderit corporis quod iste
+      sapiente laborum necessitatibus laboriosam adipisci molestiae aspernatur
+      dignissimos, non distinctio nulla cupiditate.
+    </p>
+  </section>
+</body>
+
+</html>
